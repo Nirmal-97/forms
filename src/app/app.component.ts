@@ -10,9 +10,11 @@ export class AppComponent {
   @ViewChild('f') signupForm: NgForm | undefined;
   deafultQuestion = 'pet';
   answer = '';
-  gender = [
+
+  genders = [
     'male', 'female'
   ];
+
   user = {
     username: '',
     email: '',
@@ -20,9 +22,8 @@ export class AppComponent {
     answer: '',
     gender: ''
   };
-
-
-
+  
+  submitted = false;
 
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -35,23 +36,30 @@ export class AppComponent {
       questionAnswer: ''
     });
   }
-  
+
+  // this.signupForm.form.patchValue({
+  //   userData: {
+  //     username: suggestedName
+  //   }
+  // })
+
   // onSubmit(form: NgForm) {
   //   console.log(form);
   // }
   
   onSubmit() {
+    this.submitted = true;
+
     this.user.username = this.signupForm?.value.userdata.username;
 
     this.user.email = this.signupForm?.value.userdata.email;
 
     this.user.secret = this.signupForm?.value.userdata.secret;
 
-    this.user.answer = this.signupForm?.value.userdata.questionAnswer;
+    this.user.answer = this.signupForm?.value.questionAnswer;
 
     this.user.gender = this.signupForm?.value.userdata.gender;
 
-
-
+    this.signupForm?.reset();
   }
 }
