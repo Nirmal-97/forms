@@ -13,14 +13,45 @@ export class AppComponent {
   gender = [
     'male', 'female'
   ];
+  user = {
+    username: '',
+    email: '',
+    secret: '',
+    answer: '',
+    gender: ''
+  };
+
+
+
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+    this.signupForm?.setValue({
+      userdata: {
+        username: suggestedName,
+        email: ''
+      },
+      secret: 'pet',
+      questionAnswer: ''
+    });
   }
+  
   // onSubmit(form: NgForm) {
   //   console.log(form);
   // }
+  
   onSubmit() {
-    console.log(this.signupForm);
+    this.user.username = this.signupForm?.value.userdata.username;
+
+    this.user.email = this.signupForm?.value.userdata.email;
+
+    this.user.secret = this.signupForm?.value.userdata.secret;
+
+    this.user.answer = this.signupForm?.value.userdata.questionAnswer;
+
+    this.user.gender = this.signupForm?.value.userdata.gender;
+
+
+
   }
 }
